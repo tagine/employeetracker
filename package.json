@@ -1,0 +1,17 @@
+{
+  "name": "employeetracker",
+  "version": "1.0.0",
+  "description": "A command line applications that uses nodeJS and mySQL to build an employee tracker for managers. It allows users to do the following using the Inquirer NPM package:",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "console.table": "^0.10.0",
+    "express": "^4.17.1",
+    "inquirer": "^7.0.4"
+  }
+}
