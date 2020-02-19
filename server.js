@@ -4,6 +4,8 @@ const express = require("express");
 const inquirer = require("inquirer");
 // for app start
 const app = express();
+// for mysql
+const mysql = require("mysql");
 // for printing mySQL rows to the console
 const cTable = require("console.table");
 
@@ -60,5 +62,6 @@ const questions = [
 inquirer
   .prompt(questions)
   .then(answers => {
+    if (error) throw (error);
     console.log(answers)
   });
