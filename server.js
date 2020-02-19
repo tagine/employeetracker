@@ -32,3 +32,30 @@ const table = cTable.getTable([
 ]);
 
 console.log(table);
+
+const questions = [
+  {
+    type: "list",
+    name: "category",
+    message: "What category are you trying to view or edit?",
+    choices: ["departments", new inquirer.Separator(), "roles", new inquirer.Separator(), "employees"]
+  },
+  {
+    type: "list",
+    name: "employeeAction",
+    message: "What would you like to do?",
+    choices: ["add employee", new inquirer.Separator(), "delete employee", new inquirer.Separator(), "edit employee"]
+  },
+  {
+  type: "list",
+  name: "addTeamMembers",
+  message: "What type of team member would you like to add?",
+  choices: ["employee", new inquirer.Separator(), "intern", new inquirer.Separator(), "manager"]
+}
+]
+
+inquirer
+  .prompt(questions)
+  .then(answers => {
+    console.log(answers)
+  });
