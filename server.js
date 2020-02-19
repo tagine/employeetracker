@@ -34,18 +34,21 @@ const table = cTable.getTable([
 console.log(table);
 
 const questions = [
+  //For setting user intent
   {
     type: "list",
     name: "category",
-    message: "What category are you trying to view or edit?",
+    message: "What are you trying to view or edit?",
     choices: ["departments", new inquirer.Separator(), "roles", new inquirer.Separator(), "employees"]
   },
+  //For adding, deleting, editing, or viewing employees
   {
     type: "list",
     name: "employeeAction",
     message: "What would you like to do?",
-    choices: ["add employee", new inquirer.Separator(), "delete employee", new inquirer.Separator(), "edit employee"]
+    choices: ["add employee", new inquirer.Separator(), "delete employee", new inquirer.Separator(), "edit employee", new inquirer.Separator(), "view employee"]
   },
+  //For adding team members
   {
   type: "list",
   name: "addTeamMembers",
