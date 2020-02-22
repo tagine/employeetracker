@@ -11,23 +11,6 @@ const cTable = require("console.table");
 // for use of nodemon
 const nodemon = require("nodemon");
 
-// mysl connection
-var connection = mysql.createConnection({
-  host: "localhost",
-  port: 3306,
-  user: "root",
-  password: "yourRootPassword",
-  database: "staff_db"
-});
-
-connection.connect(function(err) {
-  if (err) {
-    console.error("error connecting: " + err.stack);
-    return;
-  }
-  console.log("connected as id " + connection.threadId);
-});
-
 // Set the port of our application
 // process.env.PORT lets the port be set by Heroku
 const PORT = process.env.PORT || 8080;
@@ -54,71 +37,6 @@ const table = cTable.getTable([
 
 console.log(table);
 
-const initialQuestion = [
-  {
-    type: "list",
-    name: "action",
-    message: "What would you like to do?",
-    choices: ["Add employee", new inquirer.Separator(), "Add department", new inquirer.Separator(), "Add role", new inquirer.Separator(), "Delete employee", new inquirer.Separator(), "Delete employee", new inquirer.Separator(), "Delete role", new inquirer.Separator(), "Update employee roles", new inquirer.Separator()]
-  }
-]
-
-inquirer.prompt(initialQuestion)
-.then(answer => {
-  switch (answer.action) {
-    case "Add employee":
-      const addEmployeeQuestions = [
-        {
-          type: "input",
-          name: "first_name",
-          message: "What is the employee's first name?"
-        },
-        {
-          type: "input",
-          name: "last_name",
-          message: "What is the employee's last name?"
-        }
-      ]
-      inquirer.prompt(addEmployeeQuestions)
-      .then(answers => {
-        console.log(answers.first_name)
-        console.log(answers.last_name)
-        connection.query("INSERT INTO employee SET ?", 
-        {
-          first_name: answers.first_name,
-          last_name: answers.last_name,
-          role_id: 1,
-          manager_id: 1
-        });
-        
-      })
-      break;
-    case "Add department":
-      break; 
-  }
-})
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
 const question =
 //For setting user intent
 {
@@ -328,4 +246,3 @@ function querying() {
     connection.end()
   })
 }
-*/

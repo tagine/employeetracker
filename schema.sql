@@ -8,7 +8,7 @@ CREATE DATABASE staff_db;
 USE staff_db;
 
 -- Employee table
-CREATE TABLE employee (
+CREATE TABLE employees (
   id INT AUTO_INCREMENT NOT NULL,
   first_name VARCHAR(30) NOT NULL,
   last_name VARCHAR(30) NOT NULL,
@@ -19,14 +19,14 @@ CREATE TABLE employee (
 );
 
 -- Department table
-CREATE TABLE department (
+CREATE TABLE departments (
   id INT(4) AUTO_INCREMENT NOT NULL,
   name VARCHAR(30) NOT NULL,
   PRIMARY KEY(id)
 );
 
 -- Role table
-CREATE TABLE roles (
+CREATE TABLE roless (
   id INT AUTO_INCREMENT NOT NULL,
   title VARCHAR(30) NOT NULL,
   salary DECIMAL (6,2) NOT NULL,
@@ -35,11 +35,7 @@ CREATE TABLE roles (
 );
 
 
--- add employee to employee table
-INSERT INTO employee (employee) VALUES ('');
 
--- add role to role table
-INSERT INTO roles (role) VALUES ('');
 
 
 -- Functions
