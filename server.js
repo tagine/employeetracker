@@ -59,7 +59,7 @@ const initialQuestion = [
     type: "list",
     name: "action",
     message: "What would you like to do?",
-    choices: ["Add employee", new inquirer.Separator(), "Add department", new inquirer.Separator(), "Add role", new inquirer.Separator(), "Delete employee", new inquirer.Separator(), "Delete employee", new inquirer.Separator(), "Delete role", new inquirer.Separator(), "Update employee roles", new inquirer.Separator()]
+    choices: ["Add employee", new inquirer.Separator(), "Add department", new inquirer.Separator(), "Add role", new inquirer.Separator(), "View employee", new inquirer.Separator(), "View role", new inquirer.Separator(), "View department", new inquirer.Separator(), "Update employee roles", new inquirer.Separator()]
   }
 ]
 
@@ -139,25 +139,69 @@ inquirer.prompt(initialQuestion)
               });
           })
         break;
-      // // for viewing employees
-      // case "View employee":
-      //   const viewEmployeeQuestions = [
-      //     {
-      //       type: "input",
-      //       name: "view_role",
-      //       message: "What is the role you're trying to view??"
-      //     }
-      //   ]
-      //   inquirer.prompt(viewRoleQuestions)
-      //     .then(answers => {
-      //       console.log(answers.name)
-      //       connection.query("INSERT INTO role SET ?",
-      //         {
-      //           name: answers.name,
-      //           id: 1
-      //         });
-      //     })
-      //   break;
+      // for viewing employee
+      case "View employee":
+        const viewEmployeeQuestions = [
+          {
+            type: "input",
+            name: "view_employee",
+            message: "Which employee are you trying to view?"
+          }
+        ]
+        inquirer.prompt(viewEmployeeQuestions)
+          .then(answers => {
+            console.log(answers.view_employee)
+            // console.table(connection.query.results)
+            connection.query("SELECT * FROM employees");
+          })
+        //Need to figure out a way to display table here with query
+        break;
+        case "View role":
+        const viewRoleQuestions = [
+          {
+            type: "input",
+            name: "view_role",
+            message: "Which role are you trying to view?"
+          }
+        ]
+        inquirer.prompt(viewRoleQuestions)
+          .then(answers => {
+            console.log(answers.view_role)
+            // console.table(connection.query.results)
+            connection.query("SELECT * FROM roles");
+          })
+        //Need to figure out a way to display table here with query
+        break;
+      // for viewing departments
+      case "View department":
+        const viewDepartmentQuestions = [
+          {
+            type: "input",
+            name: "view_department",
+            message: "What is the department you're trying to view?"
+          }
+        ]
+        inquirer.prompt(viewDepartmentQuestions)
+          .then(answers => {
+            console.log(answers.view_department)
+            connection.query("SELECT * FROM departments");
+          })
+        break;
+              // for updating employees
+      case "Update employee roles":
+        const editEmployeeQuestions = [
+          {
+            type: "input",
+            name: "edit_employee",
+            message: "Which employee are you trying to edit?"
+          }
+        ]
+        inquirer.prompt(editEmployeeQuestions)
+          .then(answers => {
+            console.log(answers.edit_employee);
+            connection.query("SELECT * FROM departments");
+          })
+        break;
     }
   })
 
