@@ -20,7 +20,7 @@ var connection = mysql.createConnection({
   database: "staff_db"
 });
 
-connection.connect(function(err) {
+connection.connect(function (err) {
   if (err) {
     console.error("error connecting: " + err.stack);
     return;
@@ -64,39 +64,102 @@ const initialQuestion = [
 ]
 
 inquirer.prompt(initialQuestion)
-.then(answer => {
-  switch (answer.action) {
-    case "Add employee":
-      const addEmployeeQuestions = [
-        {
-          type: "input",
-          name: "first_name",
-          message: "What is the employee's first name?"
-        },
-        {
-          type: "input",
-          name: "last_name",
-          message: "What is the employee's last name?"
-        }
-      ]
-      inquirer.prompt(addEmployeeQuestions)
-      .then(answers => {
-        console.log(answers.first_name)
-        console.log(answers.last_name)
-        connection.query("INSERT INTO employee SET ?", 
-        {
-          first_name: answers.first_name,
-          last_name: answers.last_name,
-          role_id: 1,
-          manager_id: 1
-        });
-        
-      })
-      break;
-    case "Add department":
-      break; 
-  }
-})
+  .then(answer => {
+    switch (answer.action) {
+      // for adding employees
+      case "Add employee":
+        const addEmployeeQuestions = [
+          {
+            type: "input",
+            name: "first_name",
+            message: "What is the employee's first name?"
+          },
+          {
+            type: "input",
+            name: "last_name",
+            message: "What is the employee's last name?"
+          }
+        ]
+        inquirer.prompt(addEmployeeQuestions)
+          .then(answers => {
+            console.log(answers.first_name)
+            console.log(answers.last_name)
+            connection.query("INSERT INTO employees SET ?",
+              {
+                first_name: answers.first_name,
+                last_name: answers.last_name,
+                role_id: 1,
+                manager_id: 1
+              });
+
+          })
+        break;
+      // for adding departments
+      case "Add department":
+        const addDepartmentQuestions = [
+          {
+            type: "input",
+            name: "add_department",
+            message: "What is the department's name?"
+          }
+        ]
+        inquirer.prompt(addDepartmentQuestions)
+          .then(answers => {
+            console.log(answers.add_department)
+            connection.query("INSERT INTO departments SET ?",
+              {
+                name: answers.add_department,
+                id: 10
+              });
+          })
+        break;
+      // for adding roles
+      case "Add role":
+        const addRoleQuestions = [
+          {
+            type: "input",
+            name: "add_role_name",
+            message: "What is the role named?"
+          },
+          {
+            type: "input",
+            name: "add_role_salary",
+            message: "What is the role's salary?"
+          }
+        ]
+        inquirer.prompt(addRoleQuestions)
+          .then(answers => {
+            console.log(answers.add_role_name)
+            connection.query("INSERT INTO roles SET ?",
+              {
+                title: answers.add_role_name,
+                id: answers.add_role,
+                salary: answers.add_role_salary,
+                department_id: 2,
+              });
+          })
+        break;
+      // // for viewing employees
+      // case "View employee":
+      //   const viewEmployeeQuestions = [
+      //     {
+      //       type: "input",
+      //       name: "view_role",
+      //       message: "What is the role you're trying to view??"
+      //     }
+      //   ]
+      //   inquirer.prompt(viewRoleQuestions)
+      //     .then(answers => {
+      //       console.log(answers.name)
+      //       connection.query("INSERT INTO role SET ?",
+      //         {
+      //           name: answers.name,
+      //           id: 1
+      //         });
+      //     })
+      //   break;
+    }
+  })
 
 
 
