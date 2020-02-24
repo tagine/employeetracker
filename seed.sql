@@ -16,7 +16,8 @@ FROM employees
 
 -- department table schema
 -- add department to department table
-INSERT INTO departments (department) VALUES ('');
+INSERT INTO departments (department) VALUES ("Finance");
+INSERT INTO departments (department) VALUES ("Customer Service");
 
 -- delete department from department table
 DELETE FROM departments
@@ -31,6 +32,7 @@ FROM departments;
 -- role table schema
 -- add role to role table
 INSERT INTO roles VALUE (title, salary, department_id) VALUES ("Jr Developer", 500, 10);
+INSERT INTO roles VALUE (title, salary, department_id) VALUES ("Sr Developer", 600, 11);
 
 -- delete role from roles table
 DELETE FROM roles

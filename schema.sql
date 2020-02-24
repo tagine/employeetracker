@@ -34,9 +34,6 @@ CREATE TABLE roles (
   PRIMARY KEY(id)
 );
 
-
-
-
 -- Functions
 -- department, roles, employees
 -- add employee, delete employee, edit employee, view employee
