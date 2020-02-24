@@ -184,7 +184,7 @@ inquirer.prompt(initialQuestion)
         inquirer.prompt(viewDepartmentQuestions)
           .then(answers => {
             console.log(answers.view_department)
-            connection.query("SELECT * FROM departments");
+            connection.query("SELECT * FROM departments", "SHOW FULL TABLES FROM staff_db.departments]");
           })
         break;
               // for updating employees
@@ -199,7 +199,7 @@ inquirer.prompt(initialQuestion)
         inquirer.prompt(editEmployeeQuestions)
           .then(answers => {
             console.log(answers.edit_employee);
-            connection.query("SELECT * FROM departments");
+            connection.query("SELECT * FROM departments", "DROP TABLE IF EXISTS empresults", "CREATE TABLE empresults");
           })
         break;
     }

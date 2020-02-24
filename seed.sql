@@ -1,6 +1,6 @@
 -- employee table schema
 -- add employee to employee table
-INSERT INTO employees (employee) VALUES ('');
+INSERT INTO employees (first_name, last_name, role_id, manager_id, department_id) VALUES ("Rana", "Fayez", "1", "10", "8")
 
 -- delete employee from employee table
 SELECT staff_db
@@ -30,7 +30,7 @@ FROM departments;
 
 -- role table schema
 -- add role to role table
-INSERT INTO roles (role) VALUES ('');
+INSERT INTO roles VALUE (title, salary, department_id) VALUES ("Jr Developer", 500, 10);
 
 -- delete role from roles table
 DELETE FROM roles
